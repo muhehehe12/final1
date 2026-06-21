@@ -731,3 +731,59 @@ body{padding-bottom:78px;}
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-18px); }
 }
+/* =========================================
+   IMPACT INSTANT - STILURI NOI HERO
+========================================= */
+
+/* Titlu masiv și foarte clar */
+.instant-title {
+  font-weight: 900 !important;
+  text-transform: uppercase;
+  margin-top: 20px;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+.instant-title .line1 {
+  display: block;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  color: var(--white);
+}
+.instant-title .highlight-text {
+  display: block;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  color: var(--yellow);
+  text-shadow: 0 4px 15px rgba(240, 172, 0, 0.3);
+}
+
+/* Bara de încredere de sub buton */
+.trust-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 25px;
+  margin-top: 40px;
+}
+.trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #B0B0B0;
+  font-family: var(--label);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.trust-item svg {
+  width: 18px;
+  height: 18px;
+  color: var(--yellow);
+}
+
+@media (max-width: 600px) {
+  .trust-bar {
+    flex-direction: column;
+    gap: 12px;
+  }
+}
