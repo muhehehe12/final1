@@ -1,13 +1,85 @@
 /* =========================================================
-   EXCAVĂRI TULCEA — interactions
-   1) Before/After drag slider
-   2) Diagonal strip carousel dots
-   3) Scroll-reveal animations
+   SERVICII BULDOEXCAVATOR TULCEA — interactions
+   1) Intro overlay (skip + auto-end)
+   2) Hero ambient dust particles
+   3) Final-CTA checkmark draw trigger
+   4) Before/After drag slider
+   5) Diagonal strip carousel dots
+   6) Scroll-reveal animations
 ========================================================= */
 
 document.addEventListener('DOMContentLoaded', function () {
 
-  /* ---------- 1) BEFORE / AFTER SLIDER ---------- */
+  /* ---------- 1) INTRO OVERLAY ---------- */
+  var intro = document.getElementById('intro');
+  var introDust = document.getElementById('introDust');
+  var body = document.body;
+
+  function endIntro() {
+    if (!intro) return;
+    body.classList.remove('intro-active');
+    intro.style.pointerEvents = 'none';
+    setTimeout(function () {
+      if (intro && intro.parentNode) intro.parentNode.removeChild(intro);
+    }, 600);
+  }
+
+  if (intro) {
+    // generate burst dust particles from center
+    if (introDust) {
+      for (var i = 0; i < 18; i++) {
+        var p = document.createElement('span');
+        var angle = (Math.PI * 2) * (i / 18) + Math.random() * 0.4;
+        var dist = 140 + Math.random() * 100;
+        p.style.setProperty('--dx', (Math.cos(angle) * dist) + 'px');
+        p.style.setProperty('--dy', (Math.sin(angle) * dist) + 'px');
+        p.style.animationDelay = (0.3 + Math.random() * 0.15) + 's';
+        p.style.width = p.style.height = (3 + Math.random() * 5) + 'px';
+        introDust.appendChild(p);
+      }
+    }
+    // dismiss on tap/click
+    intro.addEventListener('click', function () {
+      intro.classList.add('skip');
+      setTimeout(endIntro, 280);
+    });
+    // auto-end after animation completes
+    setTimeout(endIntro, 2050);
+  } else {
+    body.classList.remove('intro-active');
+  }
+
+  /* ---------- 2) HERO AMBIENT DUST ---------- */
+  var heroDust = document.getElementById('heroDust');
+  if (heroDust && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    for (var j = 0; j < 14; j++) {
+      var d = document.createElement('span');
+      d.style.left = (Math.random() * 100) + '%';
+      d.style.animationDuration = (8 + Math.random() * 10) + 's';
+      d.style.animationDelay = (Math.random() * 8) + 's';
+      d.style.setProperty('--drift', ((Math.random() * 80 - 40)) + 'px');
+      d.style.width = d.style.height = (2 + Math.random() * 4) + 'px';
+      heroDust.appendChild(d);
+    }
+  }
+
+  /* ---------- 3) FINAL CTA CHECKMARK TRIGGER ---------- */
+  var finalCta = document.querySelector('.final-cta');
+  if (finalCta && 'IntersectionObserver' in window) {
+    var finalObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          finalCta.classList.add('in-view');
+          finalObs.unobserve(finalCta);
+        }
+      });
+    }, { threshold: 0.3 });
+    finalObs.observe(finalCta);
+  } else if (finalCta) {
+    finalCta.classList.add('in-view');
+  }
+
+  /* ---------- 4) BEFORE / AFTER SLIDER ---------- */
   var slider = document.getElementById('baSlider');
   var beforeWrap = document.getElementById('baBeforeWrap');
   var divider = document.getElementById('baDivider');
@@ -22,27 +94,18 @@ document.addEventListener('DOMContentLoaded', function () {
       divider.style.left = percent + '%';
       handle.style.left = percent + '%';
     }
-
     function positionFromEvent(clientX) {
       var rect = slider.getBoundingClientRect();
-      var x = clientX - rect.left;
-      return (x / rect.width) * 100;
+      return ((clientX - rect.left) / rect.width) * 100;
     }
-
-    function start(e) {
-      dragging = true;
-      slider.classList.add('dragging');
-    }
+    function start() { dragging = true; slider.classList.add('dragging'); }
     function move(e) {
       if (!dragging) return;
       var clientX = e.touches ? e.touches[0].clientX : e.clientX;
       setPosition(positionFromEvent(clientX));
       e.preventDefault();
     }
-    function end() {
-      dragging = false;
-      slider.classList.remove('dragging');
-    }
+    function end() { dragging = false; slider.classList.remove('dragging'); }
 
     handle.addEventListener('mousedown', start);
     handle.addEventListener('touchstart', start, { passive: true });
@@ -51,18 +114,16 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('mouseup', end);
     window.addEventListener('touchend', end);
 
-    // also allow tapping/clicking anywhere on the slider to jump
     slider.addEventListener('click', function (e) {
       if (e.target === handle || handle.contains(e.target)) return;
       setPosition(positionFromEvent(e.clientX));
     });
 
-    // gentle auto-demo on load: ease from 50% to 38% so people notice it's draggable
     setPosition(50);
-    setTimeout(function () { setPosition(38); }, 700);
+    setTimeout(function () { setPosition(38); }, 1200);
   }
 
-  /* ---------- 2) DIAGONAL STRIP CAROUSEL DOTS ---------- */
+  /* ---------- 5) DIAGONAL STRIP CAROUSEL DOTS ---------- */
   var track = document.getElementById('stripTrack');
   var dotsWrap = document.getElementById('stripDots');
 
@@ -88,11 +149,10 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }, { root: track, threshold: 0.6 });
-
     cards.forEach(function (card) { observer.observe(card); });
   }
 
-  /* ---------- 3) SCROLL REVEAL ---------- */
+  /* ---------- 6) SCROLL REVEAL ---------- */
   var revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
   if ('IntersectionObserver' in window) {
     var revealObserver = new IntersectionObserver(function (entries) {
@@ -103,11 +163,9 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     }, { threshold: 0.15 });
-
     revealEls.forEach(function (el) { revealObserver.observe(el); });
 
-    // fail-safe: force-reveal anything still hidden after 4s (covers edge cases
-    // where an element never intersects, e.g. unusually short viewports)
+    // fail-safe: force-reveal anything still hidden after 4s
     setTimeout(function () {
       revealEls.forEach(function (el) { el.classList.add('is-visible'); });
     }, 4000);
