@@ -602,3 +602,132 @@ body{padding-bottom:78px;}
 @media (min-width: 1100px){
   .hero h1{font-size:5.4rem;}
 }
+/* ===================================================================
+   ANIMAȚII HERO & ELEMENTE DE IMPACT
+=================================================================== */
+
+/* 1. Ken Burns Effect (Zoom lent pe fundal pentru dinamism) */
+.animate-ken-burns {
+  animation: kenBurns 20s ease-out infinite alternate;
+}
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.15); }
+}
+
+/* Gradient suplimentar pentru lizibilitate maximă a textului animat */
+.hero-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 50%, rgba(0,0,0,0.4) 0%, rgba(0,0,0,0.8) 100%);
+  z-index: 1;
+}
+
+/* 2. Intrarea spectaculoasă a textului (staggered slide-up) */
+.animate-slide-up {
+  opacity: 0;
+  transform: translateY(35px);
+  animation: slideUpFade 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.25s; }
+.delay-3 { animation-delay: 0.4s; }
+.delay-4 { animation-delay: 0.55s; }
+.delay-5 { animation-delay: 0.7s; }
+.delay-6 { animation-delay: 0.85s; }
+
+@keyframes slideUpFade {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 3. Efect de reflexie/strălucire pe eticheta "Noi o rezolvăm!" */
+.shine-effect {
+  position: relative;
+  overflow: hidden;
+}
+.shine-effect::after {
+  content: "";
+  position: absolute;
+  top: 0; left: -150%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-25deg);
+  animation: shineSweep 4s infinite cubic-bezier(0.4, 0, 0.2, 1);
+  animation-delay: 1.5s;
+}
+@keyframes shineSweep {
+  0% { left: -150%; }
+  20%, 100% { left: 200%; }
+}
+
+/* 4. Butonul Call to Action pulsant (Atrage click-ul) */
+.btn-pulse {
+  animation: pulseGlow 2s infinite;
+}
+@keyframes pulseGlow {
+  0% { box-shadow: 0 0 0 0 rgba(240, 172, 0, 0.6), 0 6px 0 var(--yellow-deep); }
+  70% { box-shadow: 0 0 0 15px rgba(240, 172, 0, 0), 0 6px 0 var(--yellow-deep); }
+  100% { box-shadow: 0 0 0 0 rgba(240, 172, 0, 0), 0 6px 0 var(--yellow-deep); }
+}
+
+/* Săgețile din fundal pulsează ușor */
+.hero-pulse-slow {
+  animation: pulseOpacity 4s ease-in-out infinite alternate;
+}
+@keyframes pulseOpacity {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
+
+/* 5. Insigne Plutitoare (Catchy Floating Elements) */
+.relative-wrap {
+  position: relative;
+}
+.float-badge {
+  position: absolute;
+  background: rgba(14, 14, 14, 0.75);
+  border: 1px solid var(--yellow);
+  color: var(--white);
+  padding: 10px 18px;
+  border-radius: 40px;
+  font-family: var(--label);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 10;
+  pointer-events: none; /* Nu încurcă click-urile */
+  display: none; /* Ascuns pe mobil pentru a nu aglomera */
+}
+.float-badge svg {
+  width: 18px; height: 18px; color: var(--yellow);
+}
+
+/* Afișăm insignele pe ecrane mari și le animăm */
+@media (min-width: 900px) {
+  .float-badge { display: flex; }
+  
+  .fb-1 { 
+    top: -20px; right: 10%; 
+    animation: floatY 5s ease-in-out infinite; 
+  }
+  .fb-2 { 
+    top: 40%; right: -5%; 
+    animation: floatY 6s ease-in-out infinite reverse; 
+  }
+  .fb-3 { 
+    bottom: 5%; right: 20%; 
+    animation: floatY 4.5s ease-in-out infinite 1s; 
+  }
+}
+
+@keyframes floatY {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-18px); }
+}
