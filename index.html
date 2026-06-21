@@ -27,7 +27,7 @@
         <span class="l2">EXCAVĂRI <span>TULCEA</span></span>
       </span>
     </a>
-    <a href="tel:+40740595512" class="btn btn-call btn-small">
+    <a href="tel:+40740595512" class="btn btn-call btn-small btn-pulse">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.34 1.91.63 2.83a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.92.29 1.87.5 2.83.63A2 2 0 0 1 22 16.92z"/></svg>
       Sună
     </a>
@@ -38,30 +38,49 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero">
-    <div class="hero-bg"></div>
-    <svg class="hero-chevrons" viewBox="0 0 100 220" fill="none">
+    <div class="hero-bg animate-ken-burns"></div>
+    <div class="hero-gradient-overlay"></div>
+    <svg class="hero-chevrons hero-pulse-slow" viewBox="0 0 100 220" fill="none">
       <path d="M10 0 L60 55 L10 110" stroke="#F0AC00" stroke-width="10" opacity=".55"/>
       <path d="M30 0 L80 55 L30 110" stroke="#F0AC00" stroke-width="10" opacity=".35"/>
       <path d="M10 110 L60 165 L10 220" stroke="#F0AC00" stroke-width="10" opacity=".2"/>
     </svg>
-    <div class="wrap hero-inner">
-      <span class="hero-tag">
+    
+    <div class="wrap hero-inner relative-wrap">
+      
+      <!-- Elemente grafice plutitoare (Cathcy Elements) -->
+      <div class="float-badge fb-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        Estimare Gratuită
+      </div>
+      <div class="float-badge fb-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        Intervenție Rapidă
+      </div>
+      <div class="float-badge fb-3">
+        <span style="color:var(--yellow); font-size:1.2rem; font-style:normal;">🚜</span>
+        Utilaje Profesionale
+      </div>
+
+      <!-- Conținutul text animat -->
+      <span class="hero-tag animate-slide-up delay-1">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3" stroke-linecap="round"/></svg>
         Intervenim rapid în tot județul Tulcea
       </span>
-      <h1>
+      <h1 class="animate-slide-up delay-2">
         <span class="line1">Ai treabă</span>
         <span class="line2">grea?</span>
       </h1>
-      <span class="badge-line">Noi o rezolvăm!</span>
-      <p class="sub">Săpături, demolări, debarasări și transport moloz. Utilaje, experiență și seriozitate — pentru orice lucrare, oriunde în Tulcea.</p>
-      <div class="hero-ctas">
-        <a href="tel:+40740595512" class="btn btn-call">
+      <span class="badge-line animate-slide-up delay-3 shine-effect">Noi o rezolvăm!</span>
+      <p class="sub animate-slide-up delay-4">Săpături, demolări, debarasări și transport moloz. Utilaje, experiență și seriozitate — pentru orice lucrare, oriunde în Tulcea.</p>
+      
+      <div class="hero-ctas animate-slide-up delay-5">
+        <a href="tel:+40740595512" class="btn btn-call btn-pulse">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.34 1.91.63 2.83a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.92.29 1.87.5 2.83.63A2 2 0 0 1 22 16.92z"/></svg>
           0740 595 512
         </a>
       </div>
-      <p class="hero-note">Sau scrie-ne pe WhatsApp — buton în colțul ecranului.</p>
+      <p class="hero-note animate-slide-up delay-6">Sau scrie-ne pe WhatsApp — buton în colțul ecranului.</p>
     </div>
   </section>
 
