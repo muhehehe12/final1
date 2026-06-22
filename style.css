@@ -162,16 +162,16 @@ a:focus-visible, button:focus-visible{
 }
 .hero-inner{
   position:relative; z-index:2;
-  padding:120px 0 70px;
+  padding:24px 0 40px;
 }
 
 /* hero split-layout for logo + content */
 .hero-visual{
   display:flex; align-items:center; justify-content:center;
-  margin-bottom:30px;
+  margin-bottom:10px;
 }
 .hero-logo{
-  width: min(300px, 70vw);
+  width: min(160px, 42vw);
   height: auto;
   filter: drop-shadow(0 14px 28px rgba(0,0,0,.55));
   opacity:0;
